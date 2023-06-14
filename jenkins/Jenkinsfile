@@ -1,0 +1,45 @@
+timestamps {
+    node() {
+        stage('Git Checkout') {
+            checkout([$class: 'GitSCM', branches: [
+                [name: "*/$branch"]
+            ], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [
+                [credentialsId: '5d127586-0335-41ed-a850-c9fa63d03296', url: 'git@github.com:papaIOprog/papaio-site.git']
+            ]])
+        }
+
+        stage('Docker Image Build') {
+            docker.build('node:papaio-site', './docker')
+        }
+
+        stage('Frontend Dependencies') {
+            script {
+                docker.image('node:papaio-site').inside {
+                    sh 'npm i'
+                }
+            }
+        }
+
+        stage('Frontend Build') {
+            sh 'docker run --rm --name my-running-script -v "$(pwd)":/usr/src/app -w /usr/src/app node:papaio-site npm run build'
+        }
+
+        stage('Create Zip') {
+            sh "(cd public && zip -r ../website.zip .)"
+        }
+
+        stage('Send and Unzip') {
+            sshPublisher(
+                publishers: [sshPublisherDesc(
+                    configName: 'nginx.servers.papaio',
+                    transfers: [
+                        sshTransfer(
+                            sourceFiles: 'website.zip',
+                        ),
+                        sshTransfer(execCommand: "unzip -o website.zip -d ~/www"),
+                    ]
+                )],
+            )
+        }
+    }
+}
