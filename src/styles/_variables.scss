@@ -1,0 +1,9 @@
+$content-size: 1100px;
+$padding-size: 40px;
+$content-width: calc($content-size - ($padding-size * 2));
+
+$media-phone: 360px;
+$media-tablet: 768px;
+$media-sm-desktop: 1024px;
+$media-desktop: 1280px;
+$media-lg-desktop: 1600px;

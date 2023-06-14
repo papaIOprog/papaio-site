@@ -1,0 +1,7 @@
+{
+  "name": "gatsby-ghost-better-html",
+  "version": "1.0.0",
+  "description": "Modify ghost html node",
+  "main": "index.js",
+  "license": "MIT"
+}

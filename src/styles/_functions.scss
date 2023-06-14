@@ -1,0 +1,26 @@
+@import "variables";
+
+@function translate-media-key($key) {
+  $conditionsMap: (
+          "phone": "(max-width: #{$media-tablet - 1px})",
+          "tablet": "(min-width: #{$media-tablet}) and (max-width: #{$media-sm-desktop - 1px})",
+          "sm-desktop": "(min-width: #{$media-sm-desktop}) and (max-width: #{$media-desktop - 1px})",
+          "desktop": "(min-width: #{$media-desktop}) and (max-width: #{$media-lg-desktop - 1px})",
+          "lg-desktop": "(min-width: #{$media-lg-desktop})",
+  );
+  @return map-get($conditionsMap, $key);
+}
+
+@mixin media($args...) {
+  $result: "";
+  @each $arg in $args {
+    $result: translate-media-key($arg);
+    @media #{$result}  {
+      @content;
+    }
+  }
+}
+
+@function spacing($size: 1) {
+  @return $size * 8px;
+}

@@ -1,0 +1,10 @@
+{
+  "development": {
+    "apiUrl": "http://ghost.servers.papaio",
+    "contentApiKey": "bfeb34d910280491270374a1a9"
+  },
+  "production": {
+    "apiUrl": "http://ghost.servers.papaio",
+    "contentApiKey": "bfeb34d910280491270374a1a9"
+  }
+}

@@ -1,0 +1,21 @@
+.logo-container {
+  display: flex;
+  justify-content: center;
+  .logo {
+    max-width: 600px;
+  }
+}
+
+.link-list {
+  margin-top: 40px;
+  list-style: none;
+  display: flex;
+  .list-item {
+    &:not(:first-of-type) {
+      margin-left: 20px;
+    }
+    .icon {
+      width: 60px;
+    }
+  }
+}

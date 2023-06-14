@@ -1,0 +1,70 @@
+@import "../../styles/variables";
+@import "../../styles/functions";
+
+.footer {
+    .footer-content {
+        display: grid;
+        .logo-container {
+            .logo {
+                width: 120px;
+            }
+        }
+        grid-template-columns: 120px repeat(3, max-content);
+        grid-gap: 100px;
+
+        .links-column {
+            .column-header {
+                color: #858AE3;
+            }
+
+            .links-list {
+                list-style: none;
+                margin-top: 8px;
+
+                .links-list-item {
+                    margin-top: 7px;
+                    color: white;
+                    font-size: 16px;
+                    line-height: 19px;
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+        background-color: #13141C;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .footer-content {
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .copyright {
+                text-align: center;
+                vertical-align: middle;
+                color: white;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 40px;
+            }
+            .links-list-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .links-list {
+                    list-style: none;
+                    display: flex;
+
+                    .links-list-item {
+                        &:not(:first-child) {
+                            margin-left: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
